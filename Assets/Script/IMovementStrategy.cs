@@ -17,12 +17,13 @@ public class LinearMovement : IMovementStrategy
 
 public class ZigzagMovement : IMovementStrategy
 {
-    private float angle = 0f;
+    [SerializeField] private float _zigzagSpeed = 5f;
+    [SerializeField] private float _frequency = 2f;
 
     public void Move(Transform transform)
     {
-        angle += Time.deltaTime * 5f;
-        transform.Translate(new Vector3(Mathf.Sin(angle), 0, 1) * Time.deltaTime);
+        float zigzag = Mathf.Sin(Time.time * _frequency) * _zigzagSpeed * Time.deltaTime;
+        transform.Translate(new Vector3(zigzag, 0, 5 * Time.deltaTime));
     }
 }
 
